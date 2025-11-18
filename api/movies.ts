@@ -12,7 +12,7 @@ export const fetchTopRatedMovies = async () => {
   try {
     const response = await fetch(url, options);
     const data = await response.json();
-    // console.log(JSON.stringify(data, null, 2));
+    console.log(JSON.stringify(data, null, 2));
     return data.results;
   } catch (error) {
     console.error(error);
