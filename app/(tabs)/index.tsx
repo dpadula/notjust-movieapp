@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text } from 'react-native';
+import { ActivityIndicator, FlatList, StyleSheet, Text } from 'react-native';
 
 import { View } from '@/components/Themed';
 import { useEffect, useState } from 'react';
@@ -25,6 +25,11 @@ export default function TabOneScreen() {
     };
     fetchMovies();
   }, []);
+
+  if (isLoading) {
+    return <ActivityIndicator />;
+  }
+
   return (
     <View style={styles.container}>
       <FlatList
