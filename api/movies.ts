@@ -1,4 +1,4 @@
-export const fetchTopRatedMovies = () => {
+export const fetchTopRatedMovies = async () => {
   const url = 'https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1';
   const options = {
     method: 'GET',
@@ -9,8 +9,12 @@ export const fetchTopRatedMovies = () => {
     },
   };
 
-  fetch(url, options)
-    .then((res) => res.json())
-    .then((json) => console.log(json))
-    .catch((err) => console.error(err));
+  try {
+    const response = await fetch(url, options);
+    const data = await response.json();
+    // console.log(JSON.stringify(data, null, 2));
+    return data.results;
+  } catch (error) {
+    console.error(error);
+  }
 };
