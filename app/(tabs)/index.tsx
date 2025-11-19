@@ -29,6 +29,10 @@ export default function TabOneScreen() {
     <View style={styles.container}>
       <FlatList
         data={movies}
+        numColumns={2}
+        keyExtractor={(movie) => movie.id}
+        contentContainerStyle={{ gap: 10 }}
+        columnWrapperStyle={{ gap: 10 }}
         renderItem={({ item }) => <MovieListItem movie={item} />}
       />
     </View>
@@ -37,8 +41,7 @@ export default function TabOneScreen() {
 
 const styles = StyleSheet.create({
   container: {
+    padding: 10,
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });

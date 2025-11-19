@@ -3,12 +3,20 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 
 const MovieListItem = ({ movie }: { movie: any }) => {
   return (
-    <View style={{ padding: 10, flex: 1 }}>
+    <View
+      style={{
+        flex: 1,
+      }}
+    >
       <Image
         source={{
-          uri: `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`,
+          uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
         }}
-        style={{ width: '100%', aspectRatio: 1, borderRadius: 10 }}
+        style={{
+          width: '100%',
+          aspectRatio: 3 / 5,
+          borderRadius: 10,
+        }}
       />
       <Text>{movie.name}</Text>
     </View>
