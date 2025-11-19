@@ -15,7 +15,6 @@ export default function TabOneScreen() {
     queryKey: ['movies'],
     queryFn: fetchTopRatedMovies,
   });
-  console.log('🚀 ~ TabOneScreen ~ movies:', movies);
 
   if (isLoading) {
     return <ActivityIndicator />;

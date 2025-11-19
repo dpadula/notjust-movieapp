@@ -7,7 +7,8 @@ const headers = {
 };
 
 export const fetchTopRatedMovies = async () => {
-  const url = 'https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1';
+  const url =
+    'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
   const options = {
     method: 'GET',
     headers: headers,
@@ -23,7 +24,6 @@ export const fetchTopRatedMovies = async () => {
 };
 
 export const fetchMovieDetails = async (id: number) => {
-  console.log('🚀 ~ fetchMovieDetails ~ id:', id);
   const url = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
 
   const options = {
@@ -34,7 +34,6 @@ export const fetchMovieDetails = async (id: number) => {
   try {
     const response = await fetch(url, options);
     const data = await response.json();
-    console.log('🚀 ~ fetchMovieDetails ~ data:', data);
     return data;
   } catch (error) {
     console.error(error);

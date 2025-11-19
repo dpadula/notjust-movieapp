@@ -20,7 +20,7 @@ const MovieListItem = ({ movie }: { movie: any }) => {
             borderRadius: 20,
           }}
         />
-        <Text>{movie.name}</Text>
+        <Text>{movie.title}</Text>
       </Pressable>
     </Link>
   );
