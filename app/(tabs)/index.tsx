@@ -14,7 +14,7 @@ export default function TabOneScreen() {
     error,
   } = useQuery({
     queryKey: ['movies'],
-    queryFn: fetchTopRatedMovies,
+    queryFn: () => fetchTopRatedMovies(2),
   });
 
   if (isLoading) {

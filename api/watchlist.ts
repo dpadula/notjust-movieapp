@@ -9,7 +9,7 @@ const headers = {
 
 export const fetchWatchlistMovies = async () => {
   const url =
-    'https://api.themoviedb.org/3/account/21050033/watchlist/movies?language=en-US&page=1&sort_by=created_at.desc';
+    'https://api.themoviedb.org/3/account/13630470/watchlist/movies?language=en-US&page=1&sort_by=created_at.desc';
   const options = {
     method: 'GET',
     headers: headers,
@@ -25,7 +25,7 @@ export const fetchWatchlistMovies = async () => {
 };
 
 export const addMovieToWatchList = async (movieId: number) => {
-  const url = 'https://api.themoviedb.org/3/account/21050033/watchlist';
+  const url = 'https://api.themoviedb.org/3/account/13630470/watchlist';
   const options = {
     method: 'POST',
     headers: headers,
