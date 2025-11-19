@@ -34,7 +34,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name='two'
+        name='watchlist'
         options={{
           title: 'Watchlist',
           tabBarIcon: ({ color }) => <TabBarIcon name='eye' color={color} />,
