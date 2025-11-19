@@ -1,5 +1,6 @@
 import { FontAwesome } from '@expo/vector-icons';
 import { useQuery } from '@tanstack/react-query';
+import { Stack } from 'expo-router';
 import { useLocalSearchParams } from 'expo-router/build/hooks';
 import React from 'react';
 import {
@@ -40,6 +41,9 @@ const MovieDetails = () => {
   }
   return (
     <View>
+      <Stack.Screen
+        options={{ title: movie.title, headerBackTitle: 'Movies' }}
+      />
       <Image
         source={{
           uri: `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`,

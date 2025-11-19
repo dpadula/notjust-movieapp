@@ -2,6 +2,7 @@ import { ActivityIndicator, FlatList, StyleSheet, Text } from 'react-native';
 
 import { View } from '@/components/Themed';
 import { useQuery } from '@tanstack/react-query';
+import { Stack } from 'expo-router';
 import { fetchTopRatedMovies } from '../../api/movies';
 import MovieListItem from '../../components/movies/MovieListItem';
 
@@ -26,6 +27,7 @@ export default function TabOneScreen() {
 
   return (
     <View style={styles.container}>
+      <Stack.Screen options={{ title: 'Movies' }} />
       <FlatList
         data={movies}
         numColumns={2}
