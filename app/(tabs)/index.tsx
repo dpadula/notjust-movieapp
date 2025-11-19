@@ -1,7 +1,7 @@
 import { ActivityIndicator, FlatList, StyleSheet, Text } from 'react-native';
 
 import { View } from '@/components/Themed';
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { fetchTopRatedMovies } from '../../api/movies';
 
 const MovieCard = ({ movie }: { movie: any }) => {
@@ -13,21 +13,34 @@ const MovieCard = ({ movie }: { movie: any }) => {
 };
 
 export default function TabOneScreen() {
-  const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const {
+    data: movies,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ['movies'],
+    queryFn: fetchTopRatedMovies,
+  });
+  // const [movies, setMovies] = useState([]);
+  // const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchMovies = async () => {
-      setIsLoading(true);
-      const movies = await fetchTopRatedMovies();
-      setMovies(movies);
-      setIsLoading(false);
-    };
-    fetchMovies();
-  }, []);
+  // useEffect(() => {
+  //   const fetchMovies = async () => {
+  //     setIsLoading(true);
+  //     const movies = await fetchTopRatedMovies();
+  //     setMovies(movies);
+  //     setIsLoading(false);
+  //   };
+  //   fetchMovies();
+  // }, []);
 
   if (isLoading) {
     return <ActivityIndicator />;
+  }
+
+  if (isError) {
+    return <Text>{error.message}</Text>;
   }
 
   return (
