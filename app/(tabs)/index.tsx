@@ -22,18 +22,6 @@ export default function TabOneScreen() {
     queryKey: ['movies'],
     queryFn: fetchTopRatedMovies,
   });
-  // const [movies, setMovies] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
-
-  // useEffect(() => {
-  //   const fetchMovies = async () => {
-  //     setIsLoading(true);
-  //     const movies = await fetchTopRatedMovies();
-  //     setMovies(movies);
-  //     setIsLoading(false);
-  //   };
-  //   fetchMovies();
-  // }, []);
 
   if (isLoading) {
     return <ActivityIndicator />;
