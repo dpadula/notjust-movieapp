@@ -15,7 +15,7 @@ const MovieListItem = ({ movie }: { movie: any }) => {
         style={{
           width: '100%',
           aspectRatio: 3 / 5,
-          borderRadius: 10,
+          borderRadius: 20,
         }}
       />
       <Text>{movie.name}</Text>
