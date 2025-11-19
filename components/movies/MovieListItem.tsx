@@ -1,25 +1,28 @@
+import { Link } from 'expo-router';
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text } from 'react-native';
 
 const MovieListItem = ({ movie }: { movie: any }) => {
   return (
-    <View
-      style={{
-        flex: 1,
-      }}
-    >
-      <Image
-        source={{
-          uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-        }}
+    <Link href={`/${movie.id}`} asChild>
+      <Pressable
         style={{
-          width: '100%',
-          aspectRatio: 3 / 5,
-          borderRadius: 20,
+          flex: 1,
         }}
-      />
-      <Text>{movie.name}</Text>
-    </View>
+      >
+        <Image
+          source={{
+            uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          }}
+          style={{
+            width: '100%',
+            aspectRatio: 3 / 5,
+            borderRadius: 20,
+          }}
+        />
+        <Text>{movie.name}</Text>
+      </Pressable>
+    </Link>
   );
 };
 
