@@ -1,5 +1,5 @@
 import { FontAwesome } from '@expo/vector-icons';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
 import { useLocalSearchParams } from 'expo-router/build/hooks';
 import React from 'react';
@@ -12,6 +12,7 @@ import {
   View,
 } from 'react-native';
 import { fetchMovieDetails } from '../api/movies';
+import { addMovieToWatchList } from '../api/watchlist';
 
 const MovieDetails = () => {
   const { id } = useLocalSearchParams();
@@ -20,6 +21,8 @@ const MovieDetails = () => {
   // normalize id which can be string | string[] | undefined to a single string or undefined
   const idParam = Array.isArray(id) ? id[0] : id;
   const movieId = idParam ? Number(idParam) : undefined;
+
+  const client = useQueryClient();
 
   const {
     data: movie,
@@ -31,6 +34,13 @@ const MovieDetails = () => {
     queryFn: () => fetchMovieDetails(movieId as number),
   });
   console.log('🚀 ~ MovieDetails ~ movie:', movie);
+
+  const { mutate } = useMutation({
+    mutationFn: () => addMovieToWatchList(movieId!),
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ['watchlist'] });
+    },
+  });
 
   if (isLoading) {
     return <ActivityIndicator />;
@@ -56,7 +66,7 @@ const MovieDetails = () => {
         </Text>
         <View style={{ marginVertical: 10 }}>
           <Pressable
-            onPress={() => console.log('PRESS')}
+            onPress={() => mutate()}
             style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}
           >
             <FontAwesome name='bookmark-o' size={24} color='black' />
