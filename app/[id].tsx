@@ -16,7 +16,6 @@ import { addMovieToWatchList } from '../api/watchlist';
 
 const MovieDetails = () => {
   const { id } = useLocalSearchParams();
-  console.log('🚀 ~ MovieDetails ~ id:', id);
 
   // normalize id which can be string | string[] | undefined to a single string or undefined
   const idParam = Array.isArray(id) ? id[0] : id;
@@ -33,7 +32,7 @@ const MovieDetails = () => {
     queryKey: ['movies', idParam],
     queryFn: () => fetchMovieDetails(movieId as number),
   });
-  console.log('🚀 ~ MovieDetails ~ movie:', movie);
+  console.log('🚀 ~ MovieDetails ~ movie:', JSON.stringify(movie, null, 2));
 
   const { mutate } = useMutation({
     mutationFn: () => addMovieToWatchList(movieId!),
