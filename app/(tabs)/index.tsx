@@ -3,14 +3,7 @@ import { ActivityIndicator, FlatList, StyleSheet, Text } from 'react-native';
 import { View } from '@/components/Themed';
 import { useQuery } from '@tanstack/react-query';
 import { fetchTopRatedMovies } from '../../api/movies';
-
-const MovieCard = ({ movie }: { movie: any }) => {
-  return (
-    <View style={{ padding: 5 }}>
-      <Text>{movie.name}</Text>
-    </View>
-  );
-};
+import MovieListItem from '../../components/movies/MovieListItem';
 
 export default function TabOneScreen() {
   const {
@@ -22,6 +15,7 @@ export default function TabOneScreen() {
     queryKey: ['movies'],
     queryFn: fetchTopRatedMovies,
   });
+  console.log('🚀 ~ TabOneScreen ~ movies:', movies);
 
   if (isLoading) {
     return <ActivityIndicator />;
@@ -35,7 +29,7 @@ export default function TabOneScreen() {
     <View style={styles.container}>
       <FlatList
         data={movies}
-        renderItem={({ item }) => <MovieCard movie={item} />}
+        renderItem={({ item }) => <MovieListItem movie={item} />}
       />
     </View>
   );
